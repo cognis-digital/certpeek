@@ -12,6 +12,7 @@ jobs:
         run: dotnet build -c Release
       - name: selftest (generates a self-signed cert and analyzes it)
         run: |
-          dotnet run -c Release -- --selftest | tee out.json
+          dotnet run -c Release --no-build -- --selftest > out.json
+          cat out.json
           grep -q '"tool": "certpeek"' out.json
           grep -q '"key_bits": 2048' out.json

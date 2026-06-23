@@ -1,0 +1,17 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: build
+        run: dotnet build -c Release
+      - name: selftest (generates a self-signed cert and analyzes it)
+        run: |
+          dotnet run -c Release -- --selftest | tee out.json
+          grep -q '"tool": "certpeek"' out.json
+          grep -q '"key_bits": 2048' out.json

@@ -8,6 +8,38 @@
 
 Part of the **[Cognis Neural Suite](https://github.com/cognis-digital)** — 370+ single-purpose, self-hostable tools. Like every tool in the suite, `certpeek` is single-purpose, emits machine-readable JSON, and exits non-zero when it finds something (CI-friendly).
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+  "id": "1234567890",
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "certs": [
+    {
+      "serial_number": "ABC123",
+      "subject": "/C=US/ST=State/L=Locality/O=Organization/CN=somehost.example",
+      "issuer": "/C=US/ST=State/L=Locality/O=Organization/CN=someca.example",
+      "not_before": 1643723400,
+      "not_after": 1644325200
+    },
+    {
+      "serial_number": "DEF456",
+      "subject": "/C=US/ST=State/L=Locality/O=Organization/CN=somehost2.example",
+      "issuer": "/C=US/ST=State/L=Locality/O=Organization/CN=someca.example",
+      "not_before": 1644325200,
+      "not_after": 1644927000
+    }
+  ]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Build / run
 
 ```bash
